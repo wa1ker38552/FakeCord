@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FakeCord | DM</title>
+    <link rel="icon" href="static/assets/fakecord.png">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/text.css">
+    <link rel="stylesheet" href="static/elements.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+  </head>
+  <body>
+    <div class="guildContainer">
+      <button class="guild" onclick="location.href='/'">
+        <img class="guildIcon" src="static/assets/fakecord.png">
+      </button>
+      {% for guild in data['guilds'] %}
+        <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
+          <img class="guildIcon" src="{{guild['icon']}}">
+        </button>
+      {% endfor %}
+    </div>
+    <div class="channelContainer">
+      <button class="submit refreshButton" onclick="location.href='/refresh'">Refresh</button>
+      <button class="submit refreshButton" onclick="location.href='/relationships'">Friends</button> 
+      <button class="submit refreshButton" style="margin-bottom: 1vh;" onclick="location.href='/settings'">Settings</button> 
+      <div class="subheading" style="position: relative; left: 1vh; margin-bottom: 1vh;">Direct Messages</div>
+      {% for channel in data['channels'] %}
+        <button class="dm" onclick="location.href='{{channel['id']}}'">
+          <div class="dmIcon">
+            <img class="dmProfile" src="{{channel['icon']}}">
+          </div>
+          &nbsp;&nbsp;
+          {% if channel['name'] is none %}
+            {{channel['name']}}
+          {% else %}
+            {% if channel['name']|length > 12 %}
+              {{channel['name'][:12]}}...
+            {% else %}
+              {{channel['name']}}
+            {% endif %}
+          {% endif %}
+        </button>
+      {% endfor %}
+    </div>
+    <div class="messagesContainer">
+      <div class="messages" id="messages">
+        {% for message in data['history'] %}
+          <div class="message">
+            <div class="profileContainer">
+              <img class="profile" src="https://cdn.discordapp.com/avatars/{{message['author']['id']}}/{{message['author']['avatar']}}">
+            </div>
+            <div class="subheading messageAuthor">{{message['author']['username']}}</div>
+            {% if message['content'] == '' %}
+              {% if message['attachments']|length > 0 %}
+                <img class="attachment" src="{{message['attachments'][0]['url']}}">
+              {% else %}
+                <div class="messageContent">discord.Embed</div>
+              {% endif %}
+            {% else %}
+              <div class="messageContent">{{message['content']}}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <script>
+        var e = document.getElementById("messages");
+        e.scrollTop = e.scrollHeight;
+      </script>
+      <form action="/message/{{data['id']}}" method="POST">
+        <input class="container messageBar" type="text" name="message" autocorrect="false" autocomplete="off">
+        <input class="hidden" type="submit">
+      </form>
+    </div>
+  </body>
+</html>
