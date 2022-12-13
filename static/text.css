@@ -1,0 +1,99 @@
+.formTitle {
+  font-size: 3vh;
+  color: #ffffff;
+}
+
+.formSubtitle {
+  font-size: 1.8vh;
+  color: #b0b0b0;
+}
+
+.formInputLabel {
+  padding-top: 2vh;
+  text-align: left;
+  font-size: 1.5vh;
+  color: #b0b0b0;
+}
+
+.red {color: #db5151;}
+
+.footer {
+  position: absolute;
+  font-size: 1vh;
+  bottom: 1.5vh;
+  color: #b0b0b0;
+}
+
+.linkedText {
+  color: #398efe;
+  text-decoration: none;
+}
+
+.linkedText:hover {text-decoration: underline;}
+
+.subheading {
+  font-size: 1.5vh;
+  color: #b0b0b0;
+  text-align: left;
+  display: inline-block;
+}
+
+.messageAuthor {
+  position: relative;
+  left: 1vh;
+  top: -1.8vh;
+}
+
+.messageContent {
+  position: relative;
+  left: 4.4vh;
+  top: -2.2vh;
+  font-size: 1.3vh;
+  color: #d1d1d1;
+  word-wrap: break-word;
+}
+
+.userDisplay {
+  position: relative;
+  top: -1vh;
+  font-size: 2vh;
+}
+
+.threadAuthor {
+  font-size: 1.2vh;
+  color: #cccccc;
+}
+
+.navLinked {
+  color: #b0b0b0;
+  font-size: 1.5vh;
+  text-decoration: none;
+  margin-right: 1vh;
+}
+
+.navLinked:hover {text-decoration: underline;}
+
+.blue {color: #7585ff; font-size: 2vh;}
+
+.text {
+  font-size: 1.5vh;
+  word-wrap: break-word;
+  color: #b0b0b0;
+  margin-bottom: 1vh;
+}
+
+.version {font-size: 1.5vh;}
+
+.embedTitle {
+  font-size: 1.3vh;
+  color: #ffffff;
+  word-wrap: break-word;
+}
+
+.embedDescription {
+  margin-top: 0.5vh;
+  font-size: 0.9vh;
+  color: #ffffff;
+  white-space: pre-wrap;
+  font-family: "Inter";
+}
