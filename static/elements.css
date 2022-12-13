@@ -1,0 +1,375 @@
+.container {
+  position: relative;
+  border-style: solid;
+  border-width: 0;
+  border-radius: 1.5vh;
+}
+
+.loginForm {
+  top: 35vh;
+
+  padding: 2vh;
+  
+  height: 20vh;
+  width: 30vw;
+
+  background: #545454;
+}
+
+.formInput {
+  left: -5vw;
+  border-radius: 0.8vh;
+  outline: 0;
+  box-sizing: border-box;
+
+  margin-top: 1vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  
+  width: 20vw;
+  height: 3vh;
+
+  background: #303030;
+  color: #ffffff;
+  font-size: 1.5vh;
+}
+
+.submit {
+  left: -5vw;
+  outline: 0;
+  border-radius: 0.8vh;
+
+  margin-top: 1vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  
+  width: 20vw;
+  height: 3vh;
+
+  background: #485efe;
+  color: #ffffff;
+  font-size: 1.2vh;
+}
+
+.submit:hover {background: #3c4ed7;}
+
+.guildContainer {
+  position: absolute;
+  left: 0;
+  box-sizing: border-box;
+
+  padding: 1vh;
+  
+  width: 4vw;
+  height: 100vh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #545454;
+}
+
+.guildIcon {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+  border-radius: 50vh;
+  transition: all .2s ease-in-out;
+}
+
+.guildIcon:hover {
+  border-radius: 2vh;
+  display: block;
+}
+
+.guild {
+  width: 5.5vh;
+  height: 5.5vh;
+  margin-bottom: 1vh;
+  border-radius: 0.5vh;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0;
+  background: transparent;
+  padding: 0.5vh;
+}
+
+.guild:hover {background: #404040;}
+
+.channelContainer {
+  position: absolute;
+  left: 4vw;
+
+  padding: 0.5vh;
+  box-sizing: border-box;
+  
+  width: 10vw;
+  height: 100vh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #5c5c5c;
+}
+
+.dm {
+  width: 95%;
+  height: 3vh;
+
+  border-radius: 0.8vh;
+  border-color: transparent;
+  background: transparent;
+
+  text-align: left;
+  font-size: 1.5vh;
+  color: #b0b0b0;
+}
+
+.dm:hover {
+  color: #ababab;
+  background: #8a8a8a;
+}
+
+.dmIcon {
+  float: left;
+  display: inline-block;
+  width: 2vh;
+  height: 2vh;
+}
+
+.dmProfile {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+  border-radius: 20vh;
+}
+
+.messagesContainer {
+  position: absolute;
+  left: 14vw;
+  width: 86vw;
+  height: 100vh;
+
+  background: transparent;
+}
+
+.messages {
+  width: 100%;
+  height: 95vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.message {
+  width: 90%;
+  height: auto;
+  margin: 0.8vh;
+}
+
+.profileContainer {
+  display: inline-block;
+  width: 3vh;
+  height: 3vh;
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 50vh;
+}
+
+.attachment {
+  position: relative;
+  left: 4.4vh;
+  object-fit: fill;
+  width: 20%;
+  height: auto;
+  display: table-cell;
+}
+
+.hidden {display: none;}
+
+.messageBar {
+  position: relative;
+  top: 1vh;
+  
+  width: 97%;
+  height: 3vh;
+
+  border-radius: 0.8vh;
+  outline: 0;
+
+  padding-left: 1vh;
+  padding-right: 1vh;
+  margin-left: 1vh;
+  
+  background: #8f8f8f;
+  color: #ffffff;
+  font-size: 1.5vh;
+}
+
+.refreshButton {
+  border-color: transparent;
+  border-width: 0;
+  width: 100%;
+  padding-left: 1vh;
+  background: transparent;
+  color: #b0b0b0;
+  font-size: 1.5vh;
+  text-align: left;
+}
+
+.refreshButton:hover {background: #4f4f4f;}
+
+.relationship {
+  width: 99%;
+  border-bottom: solid;
+  border-width: 0.1vh;
+  border-color: #a6a6a6;
+  
+  margin: 1.2vh;
+  margin-left: 1vh;
+}
+
+.guildMessageContainer {width: 78vw;}
+
+.threadContainer {width: 55vw;}
+
+.guildMembers {
+  position: relative;
+  left: 92vw;
+  width: 8vw;
+  height: 100vh;
+  background: #5c5c5c;
+}
+
+.friendRequest {
+  position: relative;
+  border-style: solid;
+  border-width: 0;
+  border-color: transparent;
+  left: 1vh;
+  margin-top: 0;
+  margin-bottom: 2vh;
+}
+
+.thread {
+  width: 99%;
+  height: auto;
+
+  margin-bottom: 1vh;
+  padding: 0.5vh;
+  padding-left: 1vh;
+
+  border-style: solid;
+  border-radius: 1vh;
+  border-width: 0;
+
+  border-color: transparent;
+  background: #616161;
+
+  transition: all .2s ease-in-out;
+  text-align: left;
+}
+
+.thread:hover {
+  transform: scale(1.005);
+  background: #5c5c5c;
+}
+
+.threadAuthorContainer {
+  position: relative;
+  top: -1.5vh;
+  display: inline-block;
+  width: 1.5vh;
+  height: 1.5vh;
+}
+
+.threadAuthorProfile {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  border-radius: 50vh;
+  border-width: 0;
+}
+
+.threadMessagesContainer {
+  position: absolute;
+  left: 69vw;
+
+  width: 31vw;
+  height: 100vh;
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.threadTitle {
+  width: 100%;
+  height: 3.5vh;
+
+  padding: 0.5vh;
+  padding-left: 1vh;
+
+  background: #616161;
+  color: #ffffff;
+  font-size: 2vh;
+  font-weight: bold;
+}
+
+.threadMessages {
+  position: relative;
+  width: 100%;
+  height: 90%;
+  overflow-y: auto;
+}
+
+.topnav {
+  width: 100%;
+  height: 2vh;
+  padding: 1vh;
+  background: #6b6b6b;
+}
+
+.logoutButton {
+  position: absolute;
+  right: 1vh;
+  bottom: 1vh;
+
+  border-style: solid;
+  border-radius: 1vh;
+  border-width: 0.2vh;
+
+  border-color: transparent;
+  background: #ff7070;
+
+  width: 5vw;
+  height: 3vh;
+
+  color: #ffffff;
+  font-size: 1.5vh
+}
+
+.logoutButton:hover {background: #e16060;}
+
+.settingsContainer {
+  width: 85vw;
+  height: auto;
+  padding: 1vh;
+}
+
+.embed {
+  position: relative;
+  left: 2.2vw;
+  top: -1.5vh;
+  border-left: solid;
+  border-color: #1c1c1c;
+  background: #616161;
+  border-radius: 0.5vh;
+
+  width: 10vw;
+  height: auto;
+
+  padding: 0.5vh;
+}
