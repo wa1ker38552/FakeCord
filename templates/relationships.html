@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FakeCord | Friends</title>
+    <link rel="icon" href="static/assets/fakecord.png">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/text.css">
+    <link rel="stylesheet" href="static/elements.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+  </head>
+  <body>
+    <div class="guildContainer">
+      <button class="guild" onclick="location.href='/'">
+        <img class="guildIcon" src="static/assets/fakecord.png">
+      </button>
+      {% for guild in data['guilds'] %}
+        <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
+          <img class="guildIcon" src="{{guild['icon']}}">
+        </button>
+      {% endfor %}
+    </div>
+    <div class="channelContainer">
+      <button class="submit refreshButton" onclick="location.href='/refresh'">Refresh</button>
+      <button class="submit refreshButton" onclick="location.href='/relationships'">Friends</button> 
+      <button class="submit refreshButton" style="margin-bottom: 1vh;" onclick="location.href='/settings'">Settings</button> 
+      <div class="subheading" style="position: relative; left: 1vh; margin-bottom: 1vh;">Direct Messages</div>
+      {% for channel in data['channels'] %}
+        <button class="dm" onclick="location.href='{{channel['id']}}'">
+          <div class="dmIcon">
+            <img class="dmProfile" src="{{channel['icon']}}">
+          </div>
+          &nbsp;&nbsp;
+          {% if channel['name'] is none %}
+            {{channel['name']}}
+          {% else %}
+            {% if channel['name']|length > 12 %}
+              {{channel['name'][:12]}}...
+            {% else %}
+              {{channel['name']}}
+            {% endif %}
+          {% endif %}
+        </button>
+      {% endfor %}
+    </div>
+    <div class="messagesContainer" style="overflow-y: auto; overflow-x: hidden;">
+      <form action="/friend" method="POST">
+        <div class="subheading userDisplay" style="margin-bottom: 0.5vh; left: 1vh; margin-top: 1.5vh; display: block;">Send friend request</div>
+        <input class="formInput friendRequest" type="text" name="user" autocomplete="off">
+        <input style="display: none;" type="submit" value="">
+      </form>
+      {% for user in data['relationships'] %}
+        <div class="relationship">
+          <div class="profileContainer">
+            <img class="profile" src="https://cdn.discordapp.com/avatars/{{user['user']['id']}}/{{user['user']['avatar']}}">
+          </div>
+          {% if user['type'] == 1 %}
+            <div class="subheading userDisplay">&nbsp;&nbsp;😄</div>
+          {% elif user['type'] == 2 %}
+            <div class="subheading userDisplay">&nbsp;&nbsp;🚫</div>
+          {% elif user['type'] == 3 %}
+            <div class="subheading userDisplay">&nbsp;&nbsp;📨</div>
+          {% else %}
+            <div class="subheading userDisplay">&nbsp;&nbsp;📩</div>
+          {% endif %}
+          <div class="subheading userDisplay">{{user['user']['username']}}#{{user['user']['discriminator']}}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
