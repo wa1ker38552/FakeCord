@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FakeCord | Settings</title>
+    <link rel="icon" href="static/assets/fakecord.png">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/text.css">
+    <link rel="stylesheet" href="static/elements.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+  </head>
+  <body>
+    <div class="guildContainer">
+      <button class="guild" onclick="location.href='/'">
+        <img class="guildIcon" src="static/assets/fakecord.png">
+      </button>
+      {% for guild in data['guilds'] %}
+        <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
+          <img class="guildIcon" src="{{guild['icon']}}">
+        </button>
+      {% endfor %}
+    </div>
+    <div class="channelContainer">
+      <button class="submit refreshButton" onclick="location.href='/refresh'">Refresh</button>
+      <button class="submit refreshButton" onclick="location.href='/relationships'">Friends</button> 
+      <button class="submit refreshButton" style="margin-bottom: 1vh;" onclick="location.href='/settings'">Settings</button> 
+      <div class="subheading" style="position: relative; left: 1vh; margin-bottom: 1vh;">Direct Messages</div>
+      {% for channel in data['channels'] %}
+        <button class="dm" onclick="location.href='{{channel['id']}}'">
+          <div class="dmIcon">
+            <img class="dmProfile" src="{{channel['icon']}}">
+          </div>
+          &nbsp;&nbsp;
+          {% if channel['name'] is none %}
+            {{channel['name']}}
+          {% else %}
+            {% if channel['name']|length > 10 %}
+              {{channel['name'][:10]}}...
+            {% else %}
+              {{channel['name']}}
+            {% endif %}
+          {% endif %}
+        </button>
+      {% endfor %}
+    </div>
+    <div class="messagesContainer">
+      <div class="topnav">
+        <a class="navLinked" href="/settings">Settings</a>
+        <a class="navLinked" href="/about">About</a>
+        <a class="navLinked" href="/updates">Updates</a>
+      </div>
+      <div class="settingsContainer">
+        <div class="subheading blue" style="font-size: 2.5vh; display: block; margin-bottom: 1vh">About</div>
+        <div class="subheading blue">What is FakeCord?</div>
+        <div class="text">
+          FakeCord is a API wrapper with UI for Discord. It utilizes Discord's API and re-routes all requests to Replit which then sends this information 
+          to the client along with some custom UI. The reason why pages take longer to load is because each request is re-routed two times, this way the website 
+          can never be blocked.
+        </div>
+        <div class="subheading blue">Is it Safe?</div>
+        <div class="text">
+          What FakeCord does is mimic Discord API requests from the official website but display the information on a different site instead. Because all information 
+          from FakeCord is obtained through Discord's official API, it's technically allowed within Discord's Terms of Service.
+        </div>
+        <div class="subheading blue">Why Can't it be Blocked?</div>
+        <div class="text">
+          FakeCord is the last Discord bypass that you'll ever need. It routes all Discord requests to Replit's servers which have rotatable IP addresses and then 
+          routes the request back to the client. Since the client isn't initiating the request, (it's only initiating a request to Replit), the website cannot 
+          be blocked unless Replit is blocked. However since Replit is an education site, it's highly unlikely to be blocked. If an admin decides to manually 
+          block FakeCord's URL, you can easily re-fork it and host it on Replit again since it's open source.
+        </div>
+        <div class="subheading blue">Is There an "official" FakeCord?</div>
+        <div class="text">
+          There is no "official" FakeCord since FakeCord being hosted on only one of Replit's VM's will cause it to be heavily rate-limited if multiple users 
+          decide to use the same instance of it. That's why when using FakeCord, you should host your own instance of it on Replit and use your own hosted version 
+          whenever accessing FakeCord.
+        </div>
+        <div class="subheading blue">____ Doesn't Work/Work Properly!</div>
+        <div class="text">
+          Unfortunately, since FakeCord is seperate from Discord, the backend of FakeCord just processes requests from Discord. A feature like instant messaging 
+          would require access to Discord backend to emit responses without refreshing the message history to check for new messages. Therefore, some features will 
+          never be supported/work on FakeCord. These include but are not limited to, instant message, voice call, streaming, members list, activities, community-stage. 
+          However, if you would like to see a feature in the future, feel free to open an issue on GitHub!
+        </div>
+        <div class="subheading blue">500 Internal Server Error</div>
+        <div class="text">
+          Since there is no proper rate limit handling on FakeCord (so far!), a 500 Internal Server Error most likely
+          means that your application has hit Discord's rate limit due to excessive acessing of pages or spam. To solve this, you can either wait if you don't host the instance
+           or you can run 'kill 1' on Replit to refresh the instance's IP. If it's still showing the error, clear your website's cookies and sign-in again.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
