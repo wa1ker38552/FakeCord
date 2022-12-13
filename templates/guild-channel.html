@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FakeCord | {{data['guild']['name']}} | Channel</title>
+    <link rel="icon" href="static/assets/fakecord.png">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/text.css">
+    <link rel="stylesheet" href="/static/elements.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+  </head>
+  <body>
+    <div class="guildContainer">
+      <button class="guild" onclick="location.href='/'">
+        <img class="guildIcon" src="/static/assets/fakecord.png">
+      </button>
+      {% for guild in data['guilds'] %}
+        {% if guild['id'] == data['guild']['id'] %}
+          <button class="guild" style="background: #404040;" onclick="location.href='/guilds/{{guild['id']}}'">
+        {% else %}
+          <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
+        {% endif %}
+          <img class="guildIcon" src="{{guild['icon']}}">
+        </button>
+      {% endfor %}
+    </div>
+    <div class="channelContainer">
+      <button class="submit refreshButton" style="margin-bottom: 1vh;" onclick="location.href='/refresh/{{data['guild']['id']}}'">Refresh</button>
+      <div class="subheading" style="position: relative; left: 1vh; font-size: 2vh; display: block;">
+        {% if data['guild']['name']|length > 10 %}
+          {{data['guild']['name'][:10]}}...
+        {% else %}
+          {{data['guild']['name']}}
+        {% endif %}
+      </div>
+      {% for channel in data['channels'] %}
+        {% if channel['type'] != 4 %}
+          {% if channel['id'] == data['id'] %}
+            <button class="dm" style="background: #6b6b6b;" onclick="location.href='/guilds/{{data['guild']['id']}}/{{channel['id']}}'">
+          {% else %}
+            <button class="dm" onclick="location.href='/guilds/{{data['guild']['id']}}/{{channel['id']}}'">
+          {% endif %}
+            &nbsp;&nbsp;
+            {% if channel['type'] == 0 %}
+              💬
+            {% elif channel['type'] == 5 %}
+              📢
+            {% elif channel['type'] == 2 %}
+              🔊
+            {% elif channel['type'] == 15 %}
+              📜
+            {% elif channel['type'] == 13 %}
+              🎤
+            {% endif %}
+            {% if channel['name'] is none %}
+              {{channel['name']}}
+            {% else %}
+              {% if channel['name']|length > 12 %}
+                {{channel['name'][:12]}}...
+              {% else %}
+                {{channel['name']}}
+              {% endif %}
+            {% endif %}
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="messagesContainer guildMessageContainer">
+      <div class="messages" id="messages">
+        {% for message in data['history'] %}
+          <div class="message">
+            <div class="profileContainer">
+              <img class="profile" src="https://cdn.discordapp.com/avatars/{{message['author']['id']}}/{{message['author']['avatar']}}">
+            </div>
+            <div class="subheading messageAuthor">{{message['author']['username']}}</div>
+            {% if message['content'] == '' %}
+              {% if message['attachments']|length > 0 %}
+                <img class="attachment" src="{{message['attachments'][0]['url']}}">
+              {% else %}
+                {% if message['embeds']|length > 0 %}
+                  {% if 'color' in message['embeds'][0] %}
+                    <div class="embed" style="border-color: #{{'%0x' % message['embeds'][0]['color']}}">
+                  {% else %}
+                    <div class="embed">
+                  {% endif %}
+                    {% if 'title' in message['embeds'][0] %}
+                      <div class="embedTitle">{{message['embeds'][0]['title']}}</div>
+                    {% endif %}
+                    {% if 'description' in message['embeds'][0] %}
+                      <pre class="embedDescription">{{message['embeds'][0]['description']}}</pre>
+                    {% endif %}
+                  </div>
+                {% else %}
+                  <div class="messageContent"><b>Message type unsupported!</b></div>
+                {% endif %}
+              {% endif %}
+            {% else %}
+              <div class="messageContent">{{message['content']}}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <script>
+        var e = document.getElementById("messages");
+        e.scrollTop = e.scrollHeight;
+      </script>
+      <form action="/message/{{data['id']}}" method="POST">
+        <input class="container messageBar" type="text" name="message" autocorrect="false" autocomplete="off">
+        <input class="hidden" type="submit">
+      </form>
+    </div>
+    <div class="guildMembers">
+    </div>
+  </body>
+</html>
