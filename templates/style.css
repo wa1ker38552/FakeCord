@@ -1,0 +1,24 @@
+body {
+  font-family: "Inter";
+  margin: 0;
+  padding: 0;
+  background: #737373;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0.5vh;
+}
+
+::-webkit-scrollbar-track {
+  background: #5c5c5c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 0.5vh;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2e2e2e;
+}
