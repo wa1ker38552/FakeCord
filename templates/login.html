@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FakeCord | Login</title>
+    <link rel="icon" href="static/assets/fakecord.png">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/login.css">
+    <link rel="stylesheet" href="static/text.css">
+    <link rel="stylesheet" href="static/elements.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+  </head>
+  <body>
+    <center>
+      <div class="container loginForm">
+        <form action="/login" method="POST">
+          <div class="formTitle">Welcome Back!</div>
+          <div class="formSubtitle">We're so glad to see you again!</div>
+          <div class="formInputLabel">Authorization Token<span class="red">*</span></div>
+          <div><input class="container formInput" type="password" name="token" autocomplete="off"></div>
+          <div><input class="container submit" type="submit" value="Login"></div>
+          <div class="footer">Head to <a class="linkedText" href="https://discord.com/login">official</a> site</div>
+        </form>
+      </div>
+    </center>
+  </body>
+</html>
