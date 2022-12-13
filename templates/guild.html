@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FakeCord | {{data['guild']['name']}}</title>
+    <link rel="icon" href="static/assets/fakecord.png">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/text.css">
+    <link rel="stylesheet" href="/static/elements.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+  </head>
+  <body>
+    <div class="guildContainer">
+      <button class="guild" onclick="location.href='/'">
+        <img class="guildIcon" src="/static/assets/fakecord.png">
+      </button>
+      {% for guild in data['guilds'] %}
+        {% if guild['id'] == data['guild']['id'] %}
+          <button class="guild" style="background: #404040;" onclick="location.href='/guilds/{{guild['id']}}'">
+        {% else %}
+          <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
+        {% endif %}
+          <img class="guildIcon" src="{{guild['icon']}}">
+        </button>
+      {% endfor %}
+    </div>
+    <div class="channelContainer">
+      <button class="submit refreshButton" style="margin-bottom: 1vh;" onclick="location.href='/refresh/{{data['guild']['id']}}'">Refresh</button>
+      <div class="subheading" style="position: relative; left: 1vh; font-size: 2vh; display: block;">
+        {% if data['guild']['name']|length > 10 %}
+          {{data['guild']['name'][:10]}}...
+        {% else %}
+          {{data['guild']['name']}}
+        {% endif %}
+      </div>
+      {% for channel in data['channels'] %}
+        {% if channel['type'] != 4 %}
+          <button class="dm" onclick="location.href='/guilds/{{data['guild']['id']}}/{{channel['id']}}'">
+            &nbsp;&nbsp;
+            {% if channel['type'] == 0 %}
+              💬
+            {% elif channel['type'] == 5 %}
+              📢
+            {% elif channel['type'] == 2 %}
+              🔊
+            {% elif channel['type'] == 15 %}
+              📜
+            {% elif channel['type'] == 13 %}
+              🎤
+            {% endif %}
+            {% if channel['name'] is none %}
+              {{channel['name']}}
+            {% else %}
+              {% if channel['name']|length > 12 %}
+                {{channel['name'][:12]}}...
+              {% else %}
+                {{channel['name']}}
+              {% endif %}
+            {% endif %}
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="messagesContainer guildMessageContainer">
+    </div>
+    <div class="guildMembers">
+      <!--
+      ref dump.txt
+      -->
+    </div>
+  </body>
+</html>
