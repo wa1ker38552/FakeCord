@@ -148,6 +148,10 @@ def guilds_channel(guild, channel):
     guildmeta = db['database'][request.cookies.get('token')]['guildsmeta'][guild]['guildmeta']
     channelmeta = db['database'][request.cookies.get('token')]['guildsmeta'][guild]['channelmeta']
     membersmeta = db['database'][request.cookies.get('token')]['guildsmeta'][guild]['membersmeta']
+    title = 'Unable to fetch title!'
+    
+    for c in channelmeta:
+      if c['id'] == channel: title = c['name']
 
     if history == []:
       history = client.get(f'https://discord.com/api/v9/channels/{channel}/threads/search?archived=true&sort_by=last_message_time&sort_order=desc&limit=25&tag_setting=match_some&offset=0').json()
@@ -176,6 +180,7 @@ def guilds_channel(guild, channel):
           'guild': guildmeta,
           'threads': threads,
           'members': membersmeta,
+          'title': title,
           'id': channel
         })
       except KeyError: pass
@@ -190,6 +195,7 @@ def guilds_channel(guild, channel):
       'channels': channelmeta,
       'guild': guildmeta,
       'history': history,
+      'title': title,
       'id': channel,
       'members': membersmeta
     })
