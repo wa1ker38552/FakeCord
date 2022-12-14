@@ -49,15 +49,39 @@
             <div class="profileContainer">
               <img class="profile" src="https://cdn.discordapp.com/avatars/{{message['author']['id']}}/{{message['author']['avatar']}}">
             </div>
-            <div class="subheading messageAuthor">{{message['author']['username']}}</div>
+            <div class="subheading messageAuthor">
+              {{message['author']['username']}}
+              {% if message['author']['bot'] == true %}
+                <div class="botTag">Bot</div>
+              {% endif %}
+            </div>
             {% if message['content'] == '' %}
               {% if message['attachments']|length > 0 %}
-                <img class="attachment" src="{{message['attachments'][0]['url']}}">
+                {% for attachment in message['attachments'] %}
+                  <img class="attachment" src="{{attachment['url']}}">
+                {% endfor %}
               {% else %}
-                <div class="messageContent">discord.Embed</div>
+                {% if message['embeds']|length > 0 %}
+                  {% for embed in message['embeds'] %}
+                    {% if 'color' in message['embeds'][0] %}
+                      <div class="embed" style="border-color: #{{'%0x' % embed['color']}}">
+                    {% else %}
+                      <div class="embed">
+                    {% endif %}
+                      {% if 'title' in embed %}
+                        <div class="embedTitle">{{embed['title']}}</div>
+                      {% endif %}
+                      {% if 'description' in embed %}
+                        <pre class="embedDescription">{{embed['description']}}</pre>
+                      {% endif %}
+                      </div>
+                  {% endfor %}
+                {% else %}
+                  <div class="messageContent"><b>Message type unsupported!</b></div>
+                {% endif %}
               {% endif %}
             {% else %}
-              <div class="messageContent">{{message['content']}}</div>
+              <pre class="messageContent">{{message['content']}}</pre>
             {% endif %}
           </div>
         {% endfor %}
