@@ -51,6 +51,8 @@
   font-size: 1.3vh;
   color: #d1d1d1;
   word-wrap: break-word;
+  white-space: pre-wrap;
+  font-family: "Inter";
 }
 
 .userDisplay {
