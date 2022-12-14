@@ -1,5 +1,7 @@
 # FakeCord
-<img src="https://user-images.githubusercontent.com/100868154/207226242-c8064631-81ea-49a5-ad77-428dbe3e3969.png" height="25px" width="25px">
+<img src="https://user-images.githubusercontent.com/100868154/207226242-c8064631-81ea-49a5-ad77-428dbe3e3969.png" width="25" height="25"/> ⠀
+<img src="https://user-images.githubusercontent.com/100868154/207473193-2a6a0e64-4cb6-4b30-afdd-d042b450d530.png" width="25" height="25"/>
+<br>
 <b>HTML API wrapper for Discord</b>
 
 FakeCord is a API wrapper with UI for Discord. It utilizes Discord's API and re-routes all requests to Replit which then sends this information to the client along with some custom UI. The reason why pages take longer to load is because each request is re-routed two times, this way the website can never be blocked.
