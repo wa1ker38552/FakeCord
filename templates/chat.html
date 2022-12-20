@@ -15,7 +15,7 @@
       </button>
       {% for guild in data['guilds'] %}
         <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
-          <img class="guildIcon" src="{{guild['icon']}}">
+          <img class="guildIcon" src="/uploads/icons/{{guild['id']}}/{{guild['icon']}}">
         </button>
       {% endfor %}
     </div>
@@ -27,7 +27,7 @@
       {% for channel in data['channels'] %}
         <button class="dm" onclick="location.href='{{channel['id']}}'">
           <div class="dmIcon">
-            <img class="dmProfile" src="{{channel['icon']}}">
+            <img class="dmProfile" src="/uploads/avatars/{{channel['icon'][0]}}/{{channel['icon'][1]}}">
           </div>
           &nbsp;&nbsp;
           {% if channel['name'] is none %}
@@ -47,7 +47,7 @@
         {% for message in data['history'] %}
           <div class="message">
             <div class="profileContainer">
-              <img class="profile" src="https://cdn.discordapp.com/avatars/{{message['author']['id']}}/{{message['author']['avatar']}}">
+              <img class="profile" src="/uploads/avatars/{{message['author']['id']}}/{{message['author']['avatar']}}">
             </div>
             <div class="subheading messageAuthor">
               {{message['author']['username']}}
