@@ -15,7 +15,7 @@
       </button>
       {% for guild in data['guilds'] %}
         <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
-          <img class="guildIcon" src="{{guild['icon']}}">
+          <img class="guildIcon" src="/uploads/icons/{{guild['id']}}/{{guild['icon']}}">
         </button>
       {% endfor %}
     </div>
@@ -27,7 +27,7 @@
       {% for channel in data['channels'] %}
         <button class="dm" onclick="location.href='{{channel['id']}}'">
           <div class="dmIcon">
-            <img class="dmProfile" src="{{channel['icon']}}">
+            <img class="dmProfile" src="/uploads/avatars/{{channel['icon'][0]}}/{{channel['icon'][1]}}">
           </div>
           &nbsp;&nbsp;
           {% if channel['name'] is none %}
@@ -50,6 +50,11 @@
       </div>
       <div class="settingsContainer">
         <div class="subheading blue" style="font-size: 2.5vh; display: block; margin-bottom: 1vh">Update Log</div>
+        <div class="subheading blue gradientBlue">12/16/22</div>
+        <div class="version blue">1.9.5</div>
+        <div class="text">
+          Images now load regardless of whether or not discord.com is blocked! This is done by quering every single discord image and then loading it from the server and returning it to the client through the server instead of discord.com. However, this increases the time it takes for images to load
+        </div>
         <div class="subheading blue">12/12/22</div>
         <div class="version blue">1.7.5</div>
         <div class="text">
