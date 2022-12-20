@@ -19,7 +19,7 @@
         {% else %}
           <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
         {% endif %}
-          <img class="guildIcon" src="{{guild['icon']}}">
+          <img class="guildIcon" src="/uploads/icons/{{guild['id']}}/{{guild['icon']}}">
         </button>
       {% endfor %}
     </div>
