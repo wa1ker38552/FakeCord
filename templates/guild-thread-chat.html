@@ -19,7 +19,7 @@
         {% else %}
           <button class="guild" onclick="location.href='/guilds/{{guild['id']}}'">
         {% endif %}
-          <img class="guildIcon" src="{{guild['icon']}}">
+          <img class="guildIcon" src="/uploads/icons/{{guild['id']}}/{{guild['icon']}}">
         </button>
       {% endfor %}
     </div>
@@ -89,7 +89,7 @@
         {% for message in data['history'] %}
           <div class="message">
             <div class="profileContainer">
-              <img class="profile" src="https://cdn.discordapp.com/avatars/{{message['author']['id']}}/{{message['author']['avatar']}}">
+              <img class="profile" src="/uploads/avatars/{{message['author']['id']}}/{{message['author']['avatar']}}">
             </div>
             <div class="subheading messageAuthor">
               {{message['author']['username']}}
