@@ -1,5 +1,6 @@
 from flask import render_template
 from flask import make_response
+from flask import send_file
 from flask import redirect
 from flask import request
 from flask import Flask
@@ -8,6 +9,7 @@ from replit import db
 import requests
 import discord
 import os
+import io
 
 app = Flask(__name__)
 
@@ -20,6 +22,14 @@ def index():
       'guilds': db['database'][request.cookies.get('token')]['guilds'],
       'channels': db['database'][request.cookies.get('token')]['channels']
     })
+
+@app.route('/uploads/icons/<id>/<avatar>')
+def uploads_icon(id, avatar):
+  return send_file(io.BytesIO(requests.get(f'https://cdn.discordapp.com/icons/{id}/{avatar}.png?size=512').content), mimetype='image/png')
+
+@app.route('/uploads/avatars/<id>/<avatar>')
+def uploads(id, avatar):
+  return send_file(io.BytesIO(requests.get(f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png?size=512').content), mimetype='image/png')
 
 @app.route('/<channel>')
 def chat(channel):
@@ -52,6 +62,7 @@ def login():
   else:
     client = discord.Client(request.form['token'])
     r = client.get('https://discord.com/api/v9/users/@me')
+    print(r.text)
     try:
       r.json()['message']
       return redirect('/login', code=302)
@@ -164,7 +175,7 @@ def guilds_channel(guild, channel):
               'id': thread['id'],
               'title': thread['name'],
               'op': thread['owner']['user']['username'],
-              'avatar': f'https://cdn.discordapp.com/avatars/{thread["owner"]["user"]["id"]}/{thread["owner"]["user"]["avatar"]}.png',
+              'avatar': (thread["owner"]["user"]["id"], thread["owner"]["user"]["avatar"]),
               'messages': thread['total_message_sent']
             })
           except KeyError:
