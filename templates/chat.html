@@ -58,7 +58,7 @@
             {% if message['content'] == '' %}
               {% if message['attachments']|length > 0 %}
                 {% for attachment in message['attachments'] %}
-                  <img class="attachment" src="{{attachment['url']}}">
+                  <img class="attachment" src="/uploads/attachments?url={{attachment['url']}}">
                 {% endfor %}
               {% else %}
                 {% if message['embeds']|length > 0 %}
