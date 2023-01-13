@@ -27,6 +27,10 @@ def index():
 def uploads_icon(id, avatar):
   return send_file(io.BytesIO(requests.get(f'https://cdn.discordapp.com/icons/{id}/{avatar}.png?size=512').content), mimetype='image/png')
 
+@app.route('/uploads/attachments')
+def uploads_attachments():
+  return send_file(io.BytesIO(requests.get(request.args.get('url')).content), mimetype='image/png')
+
 @app.route('/uploads/avatars/<id>/<avatar>')
 def uploads(id, avatar):
   return send_file(io.BytesIO(requests.get(f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png?size=512').content), mimetype='image/png')
