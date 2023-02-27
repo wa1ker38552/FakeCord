@@ -1,4 +1,5 @@
 # FakeCord
+<h1>Development has been moved to <a href=https://github.com/wa1ker38552/fakecord-v2>Fakecord v2</a></h1>
 <img src="https://user-images.githubusercontent.com/100868154/207226242-c8064631-81ea-49a5-ad77-428dbe3e3969.png" width="25" height="25"/> ⠀
 <img src="https://user-images.githubusercontent.com/100868154/207473193-2a6a0e64-4cb6-4b30-afdd-d042b450d530.png" width="25" height="25"/>
 <br>
